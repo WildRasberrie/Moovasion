@@ -60,6 +60,9 @@ class LevelManager {
       cloudMove[i].display();//add in clouds
       cloudMove[i].update();
     }
+    
+    evilClouds.display();
+    evilClouds.update();
 
     player.display();// add in player
     player.update();
@@ -84,6 +87,11 @@ class LevelManager {
     fill (0);
     text ("COWS EATEN: \t"+ score, width - 200, 100);
     text ("FUEL: \t"+ player.health, 200, 100);
-    text ("TIMER: \t OUT OF ORDER", 200, 125);
+    if ((timer[1].timePassed/1000)<30){
+      text ("TIMER: \t" + (30 -  (timer[1].timePassed)/1000), 200, 125);
+    } 
+    if ((timer[1].timePassed/1000)>30){
+      timer[1].start();  
   }
+}
 }

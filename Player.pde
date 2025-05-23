@@ -1,6 +1,5 @@
 Animation flying, beam;
-Timer[] timer;
-int time = 10;//start timer for 60 sec(s)
+
 class Player {
   float x, y, opacity= 0;
   PVector vel;
@@ -14,8 +13,7 @@ class Player {
     flying = new Animation ("SpaceShip", 16);
     beam = new Animation ("Beam", 18);
     health = 100;
-    timer = new Timer [1];
-    timer[0] = new Timer(time);
+    
   }
 
   void display() {
@@ -52,8 +50,8 @@ class Player {
       }
     } else {
       playSound = false;
-      beammeup.stop();
       moo.stop();
+      beammeup.stop();
     }
   }
 
@@ -64,19 +62,21 @@ class Player {
       fuel = cow[i].pos.y < this.y+200;// if cow is beamed to spaceship == spaceship fuel
 
       if (inBeam) {
-        //cow behavior
-
+        //cow behavior in beam
         cow[i].pos.y-=vel.y;
         cow[i].inBeam= true;
         cow[i].anim = "being beamed";
-
+        // if cow is absorbed by spaceship
         if (fuel) {
           if (health < 100) {
             health+=10;
+            if (health<50) {
+              this.y+=vel.y/2;
+            }
           }
           cow[i].teleport();
           println("score!");
-          lvlmngr.score++;
+          lvlmngr.score++; //increase score count
         }
       }
     }
@@ -103,15 +103,9 @@ class Player {
     fill (#F01F46); // fuel bar to increase as cows are eaten
     rect (this.x+100, this.y - 30, health, 10);
 
-    if (timer[0].startTime >time) {
+    if (timer[0].finished()) {
       health-=1;
-      timer[0].restart();
-    }
-    if (fuel) {
-      health+=10;
-      if (health<50) {
-        this.y+=vel.y/2;
-      }
+      timer[0].start();
     }
   }
 }

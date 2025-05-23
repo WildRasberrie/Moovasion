@@ -3,15 +3,24 @@
 LevelManager lvlmngr;
 Object[] cow;
 Clouds[] cloudMove;
+EvilCloud evilClouds;
 Player player;
 boolean up, down, left, right,space;
 String cows ="cows", clouds = "clouds";
+Timer[] timer;
+int sec = 1000;//start timer for 1 sec(s)
+int sec30 = 30000; // 30 sec timer
 
 void setup() {
   size (1200, 1200);
   background (0);
   frameRate (10);
   lvlmngr = new LevelManager ();
+  //timer 
+  timer = new Timer [3];
+    timer[0] = new Timer(sec);// lose health every sec timer
+    timer[1] = new Timer(sec30);
+    timer[2] = new Timer (5000); // 5 secs
   //player
   player = new Player (width-300, 200);
   //cows
@@ -26,6 +35,7 @@ void setup() {
   for (int i = 0; i < cloudMove.length; i ++) {
     cloudMove[i] = new Clouds (0 + (i* random(100, 250)), 100 + (i* random(-300, 200)), "clouds");
   }
+  evilClouds = new EvilCloud (-500,0);
   SFXSetup();
 }
 
