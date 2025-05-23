@@ -1,6 +1,5 @@
-
-
 LevelManager lvlmngr;
+UI ui;
 Object[] cow;
 Clouds[] cloudMove;
 EvilCloud evilClouds;
@@ -15,7 +14,8 @@ void setup() {
   size (1200, 1200);
   background (0);
   frameRate (10);
-  lvlmngr = new LevelManager ();
+  lvlmngr = new LevelManager (); //lvl manager 
+  ui = new UI(); //importing UI
   //timer 
   timer = new Timer [3];
     timer[0] = new Timer(sec);// lose health every sec timer
@@ -24,11 +24,11 @@ void setup() {
   //player
   player = new Player (width-300, 200);
   //cows
-  cow = new Object [20];
+  cow = new Object [50];
   for (int i = 0; i < cow.length; i ++) {
-    float rd = random (250, 400);
-    float rdy = random (-100, 0);
-    cow[i] = new Object (width + (i * rd), height- 400 + (i * rdy));
+    float rd = random (150, 300);
+    float rdy = random (-300,-150);
+    cow[i] = new Object (width + (i * rd), height + (i * rdy));
   }
   //clouds
   cloudMove = new Clouds [5];

@@ -17,11 +17,15 @@ class LevelManager {
       player.display();
       break;
       // loading game screen
-    case "game":
-     
+    case "game":  
       lvl1();
+      ui.display();
+      ui.update();
       break;
-
+    case "settings":
+      ui.display();
+      ui.update();
+      break;
     case "end":
       endGame();
       break;

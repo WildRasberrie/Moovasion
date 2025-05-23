@@ -1,5 +1,5 @@
 class Animation {
-  PImage[] cow, cloud,spaceship,beam;
+  PImage[] cow, cloud,spaceship,beam, cog;
   int numberofFrames;
   int frame;
 
@@ -9,6 +9,7 @@ class Animation {
     cloud = new PImage [numberofFrames];
     spaceship = new PImage [numberofFrames];
     beam = new PImage [numberofFrames];
+    cog = new PImage [numberofFrames];
     //Adding for loop for cow walking anim
     for (int i = 0; i < numberofFrames; i++) {
       String anims = startImg + (i) + ".png"; //adding start name of frames to .png
@@ -16,6 +17,7 @@ class Animation {
       cloud [i] = loadImage (anims);
       spaceship [i] = loadImage (anims);
       beam [i] = loadImage (anims);
+      cog [i] = loadImage(anims);
     }
   }
 
@@ -23,6 +25,7 @@ class Animation {
     frame = (frame+1) % numberofFrames; // loop through frames  number
     image (cow [frame], x, y);
     image (spaceship[frame],x,y);
+    image (cog [frame], x, y);
   }
 
   void cldisplay(float x, float y) {

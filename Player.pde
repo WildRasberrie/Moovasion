@@ -104,7 +104,7 @@ class Player {
     rect (this.x+100, this.y - 30, health, 10);
 
     if (timer[0].finished()) {
-      health-=1;
+      health-=2;
       timer[0].start();
     }
   }

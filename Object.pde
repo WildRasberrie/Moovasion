@@ -100,10 +100,10 @@ class Clouds extends Object {
     }
   }
 }
+
 class EvilCloud extends Object {
   EvilCloud (float x, float y) {
     super(x, y);
-    vel = new PVector(1.5, 0);
     evilCloud = new Animation ("evilclouds", 4);
     lightning = new Animation ("lightning", 4);
   }
@@ -127,16 +127,15 @@ class EvilCloud extends Object {
       timer[2].start();
 
       if (lvlmngr.level == "game") {
-        pos = new PVector (random(100,500), 200);
+        pos = new PVector (pos.x, player.y - 100);
       }
     }
     if (timer[2].finished()) { //move off screen after 5 secs
-      pos = new PVector (width *2, height);
-      vel = new PVector (0, 0);
+      pos = new PVector (0,-height);
     }
     //if lighting cloud is above player
-    if (pos.x==player.x && timer[0].finished()) {
-      pos.x = player.x;
+    if (pos.y==player.y && timer[0].finished()) {
+      pos.y = player.y;
       // strike lightning
       anim = "lightning";
     } else {
